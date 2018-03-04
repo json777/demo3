@@ -1,0 +1,109 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>博客</title>
+    <link href="/public/css/main.css" rel="stylesheet" type="text/css">
+    <link href="/public/fontAwesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="/public/css/bootstrap.min.css" type="text/css" />
+    <link rel="stylesheet" href="/public/css/bootstrap-theme.min.css" type="text/css" />
+    <script src="/public/js/jquery-1.12.4.min.js"></script>
+    <script src="/public/js/index.js"></script>
+    <script src="/public/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+<script type="text/javascript" color="0,0,0" opacity='1' zIndex="-2" count="99"
+        src="//cdn.bootcss.com/canvas-nest.js/1.0.1/canvas-nest.min.js"></script>
+
+
+<header>
+    <!--<div class="backimg"><img src="/public/images/001.jpg"></div>-->
+    <div class="logo"><span></span><a href="/" ><img src="/public/images/002.png"></a></div>
+</header>
+
+<nav class = "navbar">
+    <div class="menu" >
+        <div class="menus">
+        {%if category == ''%}
+        <a href="/" >我的简历</a>
+            <!--<a href="#" id="my">我的</a>-->
+        {%else%}
+        <a href="/">首页</a>
+        {%endif%}
+
+        {%for cate in categories%}
+        {%if category == cate.id%}
+        <a href="/?category={{cate.id}}" class="focus">{{cate.name}}</a>
+        {%else%}
+        <a href="/?category={{cate.id}}">{{cate.name}}</a>
+        {%endif%}
+        {%endfor%}
+            </div>
+    </div>
+</nav>
+
+<!--<article class="content" style="display: none">-->
+
+    <!--</article>-->
+
+<main class="clear">
+    <div class="mainLeft">
+        {%block content%}{%endblock%}
+    </div>
+
+    <div class="mainRight">
+
+        <div class="rightBox">
+            <div class="title"><span>社交平台</span></div>
+            <p><a href="https://weibo.com/u/5228133271?refer_flag=1001030102_&is_all=1" target="_blank" class="colDanger">我的微博</a></p>
+            <p><a href="https://github.com/json777" target="_blank" class="colDanger">我的github</a></p>
+            <p><a href="https://500px.com/" target="_blank" class="colDanger">我的500px</a></p>
+        </div>
+        {% if userInfo._id %}
+        <div class="rightBox" id="userInfo">
+            <div class="title"><span>用户信息</span></div>
+            <p><span class="colDark">{{userInfo.username}}</span></p>
+
+            {% if userInfo.isAdmin %}
+            <p>
+                <span class="colDanger">你好，管理员！</span>
+                <a href="/admin">进入管理</a>
+            </p>
+            {% else %}
+            <p><span class="colDanger">你好，欢迎光临我的博客！</span></p>
+            {% endif %}
+
+            <p><span class="colDark"><a href="javascript:;" id="logout">退出</a></span></p>
+        </div>
+        {% else %}
+        <div class="rightBox" id="loginBox">
+            <div class="title"><span>管理员入口</span></div>
+            <div class="line"><span class="colDark">用户名：</span><input name="username" type="text" /><em></em></div>
+            <div class="line"><span class="colDark">密码：</span><input name="password" type="password" /><em></em></div>
+            <div class="line"><span class="colDark"></span><button>登 录</button></div>
+            <p class="textRight">注：本网站为测试版本暂时未开放注册系统~</p>
+                <!--<a href="javascript:;" class="colMint">马上注册</a>　-->
+            <p class="colWarning textCenter"></p>
+        </div>
+
+        <div class="rightBox" id="registerBox" style="display: none;">
+            <div class="title"><span>注册</span></div>
+            <div class="line"><span class="colDark">用户名：</span><input name="username" type="text" /></div>
+            <div class="line"><span class="colDark">密码：</span><input name="password" type="password" /></div>
+            <div class="line"><span class="colDark">确认：</span><input name="repassword" type="password" /></div>
+            <div class="line"><span class="colDark"></span><button>注 册</button></div>
+            <p class="textRight">已有账号？<a href="javascript:;" class="colMint">马上登录</a>　</p>
+            <p class="colWarning textCenter"></p>
+        </div>
+        {%endif%}
+    </div>
+
+
+</main>
+<a href="javascript:void(0);" class="js-back-to-top back-to-top back-to-top-is-visible">Top</a>
+<div class="copyright textCenter">Copyright ©  &nbsp  &nbsp &nbsp &nbsp &nbsp  &nbsp 联系方式：18303092563</div>
+
+</body>
+
+</html>
